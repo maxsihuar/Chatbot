@@ -44,41 +44,41 @@ EvolvAI RAG Python es un sistema conversacional inteligente basado en la arquite
 ---
 
 ## 📁 Estructura del Proyecto
-src/
-├── Api_or_Url/
-│ ├── ConfigApi.py          # Configuración de URLs y claves
-│ ├── GetApi.py             # Obtención de la API Key
-│ └── GetUrl.py             # Obtención de la URL de Qdrant
+    src/
+    ├── Api_or_Url/
+    │ ├── ConfigApi.py          # Configuración de URLs y claves
+    │ ├── GetApi.py             # Obtención de la API Key
+    │ └── GetUrl.py             # Obtención de la URL de Qdrant
 
-├── Chunking/
-│ ├── Chunk.py              # Fragmentación lógica
-│ ├── Fracmentacion.py      # Script principal de procesamiento
-│ ├── Ids.py                # Generación de IDs para chunks
-│ └── LoadDocuments.py      # Carga de archivos (.pdf, .txt, .md, .csv)
+    ├── Chunking/
+    │ ├── Chunk.py              # Fragmentación lógica
+    │ ├── Fracmentacion.py      # Script principal de procesamiento
+    │ ├── Ids.py                # Generación de IDs para chunks
+    │ └── LoadDocuments.py      # Carga de archivos (.pdf, .txt, .md, .csv)
 
-├── Config/
-│ └── Config.py             # Variables globales como PROMPT, MEMORIA, etc.
+    ├── Config/
+    │ └── Config.py             # Variables globales como PROMPT, MEMORIA, etc.
 
-├── Doc/
-│ └── *.pdf, *.md, etc.     # Documentos fuente a procesar
+    ├── Doc/
+    │ └── *.pdf, *.md, etc.     # Documentos fuente a procesar
 
-├── Embeddings/
-│ └── Embendder.py          # Encapsula generación de embeddings con Gemini
+    ├── Embeddings/
+    │ └── Embendder.py          # Encapsula generación de embeddings con Gemini
 
-├── Generator/
-│ └── LLM.py                # Modelo de lenguaje y lógica de interacción
+    ├── Generator/
+    │ └── LLM.py                # Modelo de lenguaje y lógica de interacción
 
-├── Prompts/
-│ └── CreatePrompt.py       # Estructuración del prompt
+    ├── Prompts/
+    │ └── CreatePrompt.py       # Estructuración del prompt
 
-├── Vectorstore/
-│ ├── SetupQdran.py         # Creación de colección Qdrant
-│ └── VectorConnection.py   # Conexión con el cliente Qdrant
+    ├── Vectorstore/
+    │ ├── SetupQdran.py         # Creación de colección Qdrant
+    │ └── VectorConnection.py   # Conexión con el cliente Qdrant
 
-├── Main.py                 # Script principal para ejecutar todo
-├── .env                    # API keys privadas
-├── LICENSE
-└── README.md               # Este archivo
+    ├── Main.py                 # Script principal para ejecutar todo
+    ├── .env                    # API keys privadas
+    ├── LICENSE
+    └── README.md               # Este archivo
 
 
 ---
