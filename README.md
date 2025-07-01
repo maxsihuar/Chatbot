@@ -120,6 +120,8 @@ Cada documento es fragmentado y embebido para permitir una búsqueda semántica 
 4. Generación de vectores (`embeddings`).
 5. Almacenamiento en la base de datos vectorial (Qdrant).
 
+---
+
 ## 🌐 Interfaz Web
 
 La carpeta `/Web` contiene una interfaz sencilla tipo chat en HTML+CSS+JS para interactuar con el modelo.
