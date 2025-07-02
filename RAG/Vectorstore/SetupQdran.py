@@ -36,7 +36,7 @@ def Setup(Base_datos:object) -> str | None:
         Base_datos.create_collection(
             collection_name=collection_name,
             vectors_config=VectorParams(
-                size=1500,       
+                size=1500,      
                 distance=Distance.COSINE
             )
         )

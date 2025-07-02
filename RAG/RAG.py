@@ -54,10 +54,9 @@ collection_name = SetupQdran.Setup(clienteQdrant)
 Qdrant = VectorConnection.CreateQdrant(clienteQdrant,collection_name,embeddings)
 
 #Cargamos los chunks a nuestra vase de datos vectorizada
-
 Qdrant.add_documents(documents = chunks, ids = ids)
 
-
+#MOstar la consulta en pantalla
 #Creamos una consulta
 
 mem = []
