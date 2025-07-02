@@ -29,7 +29,7 @@ def LoadAll() -> list | None:
     Returns:
         archivos(list()): Retorna una lista de archivos Laingchain
     """
-    path = os.path.join(os.getcwd(), "Doc")
+    path = os.path.join(os.getcwd(), "RAG/Doc")
 
     data = os.listdir(path)
 
