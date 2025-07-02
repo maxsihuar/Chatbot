@@ -35,9 +35,18 @@ jobs:
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+<<<<<<< HEAD
         with:
+=======
+        with: 
+          ref: Max
+>>>>>>> 7a89b71 (Agregando static.yml)
           # Upload entire repository
           path: './Web'
       - name: Deploy to GitHub Pages
         id: deployment
+<<<<<<< HEAD
         uses: actions/deploy-pages@v4
+=======
+        uses: actions/deploy-pages@v4
+>>>>>>> 7a89b71 (Agregando static.yml)
