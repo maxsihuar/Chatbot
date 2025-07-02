@@ -21,7 +21,6 @@ import sys
 
 class ConfigApi():
     @classmethod
-    
     def ConfigGenai(cls, apikey:str) -> object | None:
         """
         Este metodo se encarga de configuar el cliente de Genai con la API key
@@ -40,7 +39,7 @@ class ConfigApi():
         )
 
         return client
-    
+    @classmethod
     def ConfigQdrant(cls, urlQdrant : str, apikeyQdrant : str) -> object | None:
         """
         Este metodo se encarga de configuar el cliente de Qdrant con la API key

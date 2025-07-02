@@ -18,7 +18,7 @@ import os
 import sys
 
 
-def CreateQdrant(Base_datos: QdrantClient, collection_name: str, embedding: Embeddings) -> Qdrant:
+def CreateQdrant(Base_datos: QdrantClient, collection_name: str, embedding) -> Qdrant:
     """
     Crea una instancia del vector store Qdrant para gestionar búsquedas semánticas.
 

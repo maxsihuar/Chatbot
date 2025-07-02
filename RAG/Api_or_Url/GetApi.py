@@ -40,6 +40,7 @@ class GetApi():
         else:
             print("✅ API key cargada correctamente.")
             return api_key
+        
     @classmethod
     def ApiQdrant(cls) -> str| None:
 

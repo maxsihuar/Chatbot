@@ -32,4 +32,8 @@ class GetUrl():
 
         load_dotenv()
         url = os.getenv("Url_Qrandt_endpoint")
-        return url
+        if url is None:
+            print("❌ Url no encontrada. Verifica el .env.")
+        else:
+            print("✅ Url cargada correctamente.")
+            return url

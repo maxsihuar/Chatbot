@@ -11,14 +11,14 @@ from dotenv import load_dotenv
 
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
+import os
+import sys
 from collections import deque
 
-sys.path.append(os.path.abspath("Config"))
+sys.path.append(os.path.abspath("RAG/Config"))
 
 import Config as cf
 
-import os
-import sys
 
 
 

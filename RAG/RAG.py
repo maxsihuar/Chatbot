@@ -15,6 +15,12 @@ from Prompts import CreatePrompt
 from Vectorstore import SetupQdran
 from Vectorstore import VectorConnection
 
+import os
+import sys
+sys.path.append(os.path.abspath("RAG/Config"))
+import Config as cf
+
+
 
 #Obtenmos las API Key
 ApiGoogle = GetApi.GetApi.ApiGenai()
@@ -51,6 +57,7 @@ Qdrant = VectorConnection.CreateQdrant(clienteQdrant,collection_name,embeddings)
 
 Qdrant.add_documents(documents = chunks, ids = ids)
 
+
 #Creamos una consulta
 
 mem = []
@@ -62,7 +69,7 @@ while True:
         "parts":pregunta
     })
 
-    respuesta = CreatePrompt.Prompt(pregunta,mem,clienteGenai)
+    respuesta = CreatePrompt.Prompt(pregunta,mem,Qdrant,clienteGenai)
 
 
     print(respuesta)

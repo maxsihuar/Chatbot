@@ -1,7 +1,7 @@
 from qdrant_client import QdrantClient
 from qdrant_client.models import VectorParams, Distance
 from langchain_community.vectorstores import Qdrant
-import google.generativeai as genai
+import google.generativeai as Genai
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from dotenv import load_dotenv
 
@@ -18,7 +18,7 @@ import Config as cf
 from Generator.LLM import LLM
 
 
-def Prompt(pregunta:str, historial:list,client:GenerativeModel) -> str | None:
+def Prompt(pregunta:str, historial:list,client:Qdrant, Genai) -> str | None:
     """
         Genera una respuesta basada en la arquitectura RAG (Retrieval-Augmented Generation).
 
@@ -31,7 +31,7 @@ def Prompt(pregunta:str, historial:list,client:GenerativeModel) -> str | None:
                 str: Respuesta generada por el modelo, con contexto relevante incluido.
     """
     mensaje = LLM.GetMemory(historial)
-    contexto = LLM.GenerateSearch(pregunta, k=cf.DOCUMENTOS)
+    contexto = LLM.GenerateSearch(pregunta,client, k=cf.DOCUMENTOS)
 
     prompt = f"""
             Pregunta : {pregunta}
@@ -44,7 +44,7 @@ def Prompt(pregunta:str, historial:list,client:GenerativeModel) -> str | None:
             "parts": prompt
     })
 
-    chat = client.start_chat(history=mensaje)
+    chat = Genai.start_chat(history=mensaje)
 
     respusta = chat.send_message(prompt)
 
