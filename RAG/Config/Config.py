@@ -1,4 +1,3 @@
-
 MEMORIA = 10
 MODELO = "gpt-4o-mini"
 DOCUMENTOS = 10
