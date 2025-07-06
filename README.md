@@ -21,36 +21,7 @@ Está organizado en una arquitectura modular orientada a servicios, ideal para e
 
 ## 🔄 Flujo del sistema
 
-```mermaid
-    📄 Usuario ingresa pregunta en interfaz web (index.html)
-        ↓
-    📨 Web/Js/Conection.py → envía POST a /chat (Flask API)
-        ↓
-    🌐 Controller/Endpoint.py recibe la consulta
-        ↓
-    🧠 Service/Prompts/CreatePrompt.py construye el prompt
-        ↓
-    📚 Service/Vectorstore/VectorConnection.py conecta con Qdrant
-        ↓
-    📍 Service/Chunking/Ids.py genera ID para búsqueda
-        ↓
-    📦 Service/Chunking/Chunk.py localiza chunks relevantes
-        ↓
-    🔁 Service/Embeddings/Embendder.py convierte pregunta en embedding
-        ↓
-    🔍 Qdrant devuelve documentos más similares
-        ↓
-    📝 Prompt final + contexto generado
-        ↓
-    🤖 Service/Generator/LLM.py consulta a Gemini vía LangChain
-        ↓
-    💬 Se genera una respuesta en lenguaje natural
-        ↓
-    🔁 Controller/Endpoint.py devuelve respuesta JSON
-        ↓
-    🖥️ Web/Js/Chat.py muestra respuesta en interfaz web
-
-```
+<pre lang="markdown"> ```mermaid graph TD A[📄 Usuario ingresa pregunta<br>en interfaz web (index.html)] B[📨 Web/Js/Conection.py<br>envía POST a /chat (Flask API)] C[🌐 Controller/Endpoint.py<br>recibe la consulta] D[🧠 Prompts/CreatePrompt.py<br>construye el prompt] E[📚 Vectorstore/VectorConnection.py<br>conecta con Qdrant] F[📍 Chunking/Ids.py<br>genera ID para búsqueda] G[📦 Chunking/Chunk.py<br>localiza chunks relevantes] H[🔁 Embeddings/Embendder.py<br>embedding de pregunta] I[🔍 Qdrant<br>devuelve documentos similares] J[📝 Prompt final + contexto] K[🤖 Generator/LLM.py<br>consulta a Gemini vía LangChain] L[💬 Respuesta generada en lenguaje natural] M[🔁 Endpoint.py<br>devuelve respuesta JSON] N[🖥️ Web/Js/Chat.py<br>muestra respuesta en interfaz web] A --> B --> C --> D --> E --> F --> G --> H --> I --> J --> K --> L --> M --> N ``` </pre>
 ---
 
 ## 🧰 Tecnologías principales
