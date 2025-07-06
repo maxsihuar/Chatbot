@@ -17,7 +17,7 @@ from collections import deque
 
 sys.path.append(os.path.abspath("RAG/Config"))
 
-import Config as cf
+import Service.Config as cf
 
 
 
