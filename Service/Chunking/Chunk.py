@@ -19,7 +19,7 @@ import sys
 
 sys.path.append(os.path.abspath("Config"))
 
-import Config as cf
+import Service.Config as cf
 
 path = os.path.join(os.getcwd(), "Doc")
 

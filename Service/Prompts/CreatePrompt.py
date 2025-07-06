@@ -14,8 +14,8 @@ import sys
 
 sys.path.append(os.path.abspath("Config"))
 
-import Config as cf
-from Generator.LLM import LLM
+import Service.Config as cf
+from Service.Generator.LLM import LLM
 
 
 def Prompt(pregunta:str, historial:list,client:Qdrant, Genai) -> str | None:

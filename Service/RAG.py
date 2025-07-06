@@ -1,24 +1,23 @@
-from Api_or_Url import GetApi
-from Api_or_Url import GetUrl
-from Api_or_Url import ConfigApi
+from Service.Api_or_Url import GetApi
+from Service.Api_or_Url import GetUrl
+from Service.Api_or_Url import ConfigApi
 
-from Chunking import Ids
-from Chunking import LoadDocuments
-from Chunking import Chunk
+from Service.Chunking import Ids
+from Service.Chunking import LoadDocuments
+from Service.Chunking import Chunk
 
-from Embendings import Embendder
+from Service.Embendings import Embendder
 
-from Generator import LLM
+from Service.Generator import LLM
 
-from Prompts import CreatePrompt
+from Service.Prompts import CreatePrompt
 
-from Vectorstore import SetupQdran
-from Vectorstore import VectorConnection
-
+from Service.Vectorstore import SetupQdran
+from Service.Vectorstore import VectorConnection
 import os
 import sys
-sys.path.append(os.path.abspath("RAG/Config"))
-import Config as cf
+sys.path.append(os.path.abspath("Service/Config"))
+import Service.Config as cf
 
 
 
@@ -56,13 +55,12 @@ Qdrant = VectorConnection.CreateQdrant(clienteQdrant,collection_name,embeddings)
 #Cargamos los chunks a nuestra vase de datos vectorizada
 Qdrant.add_documents(documents = chunks, ids = ids)
 
-#MOstar la consulta en pantalla
+#Mostar la consulta en pantalla
 #Creamos una consulta
 
 mem = []
 
-while True:
-    if(pregunta := input(">>>")) == "salir":break
+def RagMain(pregunta : str):
     mem.append({
         "role":"user",
         "parts":pregunta
@@ -72,8 +70,19 @@ while True:
 
 
     print(respuesta)
-
-    mem.append({
+    
+    mem.append({    
         "role":"model",
         "parts":respuesta
     })
+    return respuesta
+
+
+
+
+# end-point (POST)=  ingresar_consulta
+"""
+{
+    consulta : "Mensaje"(valor),
+}
+"""
