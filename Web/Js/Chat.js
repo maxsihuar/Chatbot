@@ -1,10 +1,21 @@
 
+/**
+ * Obtiene el mensaje actual escrito por el usuario en el input con id 'prompt'.
+ * @returns {string} Texto ingresado por el usuario.
+ */
+
 export function CreateChat(){
     var Chat = document.getElementById("prompt").value;
 
     return Chat;
 
 }
+
+/**
+ * Muestra el mensaje generado por el modelo (bot) en el área del chat.
+ *
+ * @param {string} mensaje - Texto generado por la IA que será mostrado al usuario.
+ */
 
 export function Bot(mensaje){
     var ModelBot =
@@ -15,6 +26,10 @@ export function Bot(mensaje){
     
 }
 
+/**
+ * Toma el mensaje ingresado por el usuario y lo muestra en el área del chat.
+ * Utiliza `CreateChat()` para obtener el contenido del input.
+ */
 
 export function User(){
     var mensaje = CreateChat()

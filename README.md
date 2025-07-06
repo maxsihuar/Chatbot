@@ -1,11 +1,10 @@
-# 🧠 Consultas Medicas RAG Python
+# 🤖 RAG Chatbot con Flask + LangChain + Gemini + Qdrant
 
-## Descripción
+Este proyecto implementa un sistema de recuperación aumentada con generación (RAG) usando Flask como backend, modelos de lenguaje de Google (Gemini) a través de LangChain, y almacenamiento vectorial con Qdrant.
 
-EvolvAI RAG Python es un sistema conversacional inteligente basado en la arquitectura **RAG (Retrieval-Augmented Generation)**, desarrollado en **Python**. Está diseñado para procesar documentos clínicos (PDF, CSV, TXT, MD), generar embeddings con **Google Gemini**, almacenarlos en **Qdrant** y responder preguntas utilizando contexto relevante y memoria conversacional.
+Está organizado en una arquitectura modular orientada a servicios, ideal para escalar y mantener.
 
 ---
-
 ## 🔧 Arquitectura
 
 ### Componentes principales
@@ -20,75 +19,114 @@ EvolvAI RAG Python es un sistema conversacional inteligente basado en la arquite
 
 ---
 
-## 🔁 Flujo del sistema
+## 🔄 Flujo del sistema
 
-1. Usuario hace una pregunta por consola.
-2. Se busca contexto semántico en los documentos embebidos usando Qdrant.
-3. Se forma un prompt contextualizado.
-4. El modelo Gemini responde considerando:
-    - Memoria conversacional previa (historial)
-    - Prompt base y contexto de búsqueda
-5. Se actualiza el historial para próximas respuestas.
+```mermaid
+    📄 Usuario ingresa pregunta en interfaz web (index.html)
+        ↓
+    📨 Web/Js/Conection.py → envía POST a /chat (Flask API)
+        ↓
+    🌐 Controller/Endpoint.py recibe la consulta
+        ↓
+    🧠 Service/Prompts/CreatePrompt.py construye el prompt
+        ↓
+    📚 Service/Vectorstore/VectorConnection.py conecta con Qdrant
+        ↓
+    📍 Service/Chunking/Ids.py genera ID para búsqueda
+        ↓
+    📦 Service/Chunking/Chunk.py localiza chunks relevantes
+        ↓
+    🔁 Service/Embeddings/Embendder.py convierte pregunta en embedding
+        ↓
+    🔍 Qdrant devuelve documentos más similares
+        ↓
+    📝 Prompt final + contexto generado
+        ↓
+    🤖 Service/Generator/LLM.py consulta a Gemini vía LangChain
+        ↓
+    💬 Se genera una respuesta en lenguaje natural
+        ↓
+    🔁 Controller/Endpoint.py devuelve respuesta JSON
+        ↓
+    🖥️ Web/Js/Chat.py muestra respuesta en interfaz web
 
+```
 ---
 
-## ⚙️ Tecnologías utilizadas
+## 🧰 Tecnologías principales
 
-- **Python** 3.11+
-- **Qdrant** (Cloud o local)
-- **LangChain**
-- **Google Generative AI** (Gemini)
-- **.env** con claves API
-- **Deque** para manejo de memoria temporal
+- **[Flask](https://flask.palletsprojects.com/)** – servidor web liviano
+- **[LangChain](https://www.langchain.com/)** – framework para LLMs
+- **[Google Generative AI (Gemini)](https://ai.google.dev/)** – LLM de generación de texto
+- **[Qdrant](https://qdrant.tech/)** – base de datos vectorial
+- **JavaScript + HTML** – frontend interactivo
+- **Render.com** – despliegue automático
 
 ---
 
 ## 📁 Estructura del Proyecto
     src/
-    ├── Api_or_Url/
-    │ ├── ConfigApi.py          # Configuración de URLs y claves
-    │ ├── GetApi.py             # Obtención de la API Key
-    │ └── GetUrl.py             # Obtención de la URL de Qdrant
-
-    ├── Chunking/
-    │ ├── Chunk.py              # Fragmentación lógica
-    │ ├── Fracmentacion.py      # Script principal de procesamiento
-    │ ├── Ids.py                # Generación de IDs para chunks
-    │ └── LoadDocuments.py      # Carga de archivos (.pdf, .txt, .md, .csv)
-
-    ├── Config/
-    │ └── Config.py             # Variables globales como PROMPT, MEMORIA, etc.
-
-    ├── Doc/
-    │ └── *.pdf, *.md, etc.     # Documentos fuente a procesar
-
-    ├── Embeddings/
-    │ └── Embendder.py          # Encapsula generación de embeddings con Gemini
-
-    ├── Generator/
-    │ └── LLM.py                # Modelo de lenguaje y lógica de interacción
-
-    ├── Prompts/
-    │ └── CreatePrompt.py       # Estructuración del prompt
-
-    ├── Vectorstore/
-    │ ├── SetupQdran.py         # Creación de colección Qdrant
-    │ └── VectorConnection.py   # Conexión con el cliente Qdrant
-
-    ├── Main.py                 # Script principal para ejecutar todo
-    ├── .env                    # API keys privadas
+    ├── Controller/
+    │ └── Endpoint.py               # Define los endpoints Flask
+    │
+    ├── Service/
+    │ ├── Api_or_Url/
+    │ │ ├── ConfigApi.py            # Configuración de URLs y claves
+    │ │ ├── GetApi.py               # Obtención de la API Key
+    │ │ └── GetUrl.py               # Obtención de la URL de Qdrant
+    │ │
+    │ ├── Chunking/
+    │ │ ├── Chunk.py                # Lógica para dividir documentos
+    │ │ ├── Ids.py                  # Generación de IDs únicos
+    │ │ └── LoadDocuments.py        # Carga de .pdf, .txt, .md, .csv
+    │ │
+    │ ├── Config/
+    │ │ └── Config.py               # Variables globales: PROMPT, memoria, etc.
+    │ │
+    │ ├── Doc/
+    │ │ └── (Archivos .pdf, .md...) Documentos fuente
+    │ │
+    │ ├── Embeddings/
+    │ │ └── Embendder.py            # Generación de embeddings con Gemini
+    │ │
+    │ ├── Generator/
+    │ │ └── LLM.py                  # Lógica del modelo de lenguaje
+    │ │
+    │ ├── Prompts/
+    │ │ └── CreatePrompt.py         # Creación estructurada de prompts
+    │ │
+    │ ├── Vectorstore/
+    │ │ ├── SetupQdran.py           # Inicializa colección Qdrant
+    │ │ └── VectorConnection.py     # Conexión al cliente Qdrant
+    │ │
+    │ ├── .env                      # Variables de entorno locales (API keys)
+    │ └── RAG.py                    # Ejecuta el pipeline completo de RAG
+    │
+    ├── Web/
+    │ ├── Js/
+    │ │ ├── Chat.py                 # Funcionalidad del Chat en Front-end
+    │ │ └── Conection.py            # Conexión entre frontend y backend
+    │ │
+    │ ├── CSS/                      # Estilos personalizados
+    │ └── index.html                # Interfaz de usuario
+    │
+    ├── Main.py                     # Levanta el servidor Flask
     ├── LICENSE
-    └── README.md               # Este archivo
+    ├── requirements.txt            # Dependencias del proyecto
+    ├── requirements.in             # Fuente para pip-compile (opcional)
+    └── README.md                   # Este archivo
 
 
 ---
 
-## 🚀 Ejecución
+## 🧱 Clonar el repositorio
 
-1. Clona el repositorio:
 ```bash
-git clone https://github.com/tu-usuario/evolvai-rag-python.git
-cd evolvai-rag-python
+git clone https://github.com/maxsihuar/Chatbot.git
+cd Chatbot
+yaml
+Copiar
+Editar
 
 ```
  ---
@@ -109,22 +147,60 @@ Cada documento es fragmentado y embebido para permitir una búsqueda semántica 
 
 - Todos los archivos deben colocarse dentro de la carpeta: `/Doc`
 
-### ⚙️ Proceso automático:
+---
 
-1. Detección del tipo de archivo.
-2. Carga mediante los loaders correspondientes:
-   - `TextLoader` para `.txt` y `.md`
-   - `PyPDFLoader` para `.pdf`
-   - `CSVLoader` para `.csv`
-3. División en fragmentos (`chunking`).
-4. Generación de vectores (`embeddings`).
-5. Almacenamiento en la base de datos vectorial (Qdrant).
+## 🌐 Despliegue en Render
+
+### 🔧 Configuración básica en Render
+
+| Opción               | Valor                              |
+| -------------------- | ---------------------------------- |
+| Runtime              | Python 3.10+                       |
+| Build Command        | `pip install -r requirements.txt`  |
+| Start Command        | `gunicorn Main:app`                |
+| Variables de entorno | GOOGLE\_API\_KEY, QDRANT\_API\_KEY |
+
+Render te dará una URL pública como:
+
+```
+https://chatbot-api.onrender.com
+```
 
 ---
 
-## 🌐 Interfaz Web
+## 🌍 Conexión del frontend con Render
 
-La carpeta `/Web` contiene una interfaz sencilla tipo chat en HTML+CSS+JS para interactuar con el modelo.
+Tu archivo JS (`Conection.py`) debe usar la URL pública:
 
-Puedes abrir `Web/index.html` directamente en tu navegador.
+```js
+fetch("https://chatbot-api.onrender.com/chat", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ pregunta: user_input })
+})
+.then(res => res.json())
+.then(data => mostrarRespuesta(data.respuesta));
+```
+
+> No olvides permitir CORS en Flask:
+
+```python
+from flask_cors import CORS
+CORS(app)
+```
+
+---
+
+## 📎 Licencia
+
+Este proyecto está bajo la licencia MIT.
+
+---
+
+## ✉️ Autor
+
+**Max Sihuar Holguino Nuñez**\
+Repositorio: [Chatbot](https://github.com/maxsihuar/Chatbot)
+
+¿Preguntas? ¡Abre un issue o contáctame por GitHub!
 

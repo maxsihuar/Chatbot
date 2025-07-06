@@ -60,7 +60,23 @@ Qdrant.add_documents(documents = chunks, ids = ids)
 
 mem = []
 
-def RagMain(pregunta : str):
+def RagMain(pregunta: str) -> str:
+    """
+    Ejecuta el flujo principal de RAG (Retrieval-Augmented Generation) para una pregunta del usuario.
+
+    Este método:
+    1. Agrega la pregunta al historial de memoria (`mem`) como parte del rol "user".
+    2. Genera una respuesta usando la función `CreatePrompt.Prompt`, pasando la pregunta, la memoria, la conexión a Qdrant y el cliente GenAI.
+    3. Imprime la respuesta en consola (para depuración).
+    4. Agrega la respuesta generada al historial como parte del rol "model".
+    5. Devuelve la respuesta como cadena.
+
+    Args:
+        pregunta (str): Pregunta ingresada por el usuario.
+
+    Returns:
+        str: Respuesta generada por el modelo de lenguaje.
+    """
     mem.append({
         "role":"user",
         "parts":pregunta
