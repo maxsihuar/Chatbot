@@ -1,27 +1,18 @@
-Flask==3.1.1
-gunicorn==23.0.0
-python-dotenv==1.1.1
+Flask
+gunicorn
+python-dotenv
 
-langchain==0.3.26
-langchain-community==0.3.26
-langchain-core==0.3.66
-langchain-google-genai==2.1.6
-langsmith==0.4.4
+langchain
+langchain-community
+langchain-core
+langchain-google-genai
+langsmith
 
-google-generativeai==0.8.5
-google-auth==2.40.3
-google-api-core==2.25.1
-google-api-python-client==2.174.0
-google-auth-httplib2==0.2.0
-googleapis-common-protos==1.70.0
-protobuf==5.29.5
+google-generativeai
 
-pydantic==2.11.7
-pydantic-settings==2.10.1
-dataclasses-json==0.6.7
+pydantic
+pydantic-settings
+dataclasses-json
 
-qdrant-client==1.14.3
-SQLAlchemy==2.0.41
-
-
-
+qdrant-client
+SQLAlchemy
