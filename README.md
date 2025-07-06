@@ -23,23 +23,22 @@ Está organizado en una arquitectura modular orientada a servicios, ideal para e
 
 ```mermaid
 flowchart TD
-    A[📄 Usuario: ingresa pregunta en index.html]
-    B[📨 JS (Conection.py): envía POST a /chat]
-    C[🌐 Flask (Endpoint.py): recibe la consulta]
-    D[🧠 CreatePrompt.py: construye el prompt]
-    E[📚 VectorConnection.py: conecta con Qdrant]
-    F[📍 Ids.py: genera ID para búsqueda]
-    G[📦 Chunk.py: localiza chunks relevantes]
-    H[🔁 Embendder.py: convierte pregunta en embedding]
-    I[🔍 Qdrant: devuelve documentos similares]
-    J[📝 Prompt final: contexto + pregunta]
-    K[🤖 LLM.py: consulta a Gemini con LangChain]
-    L[💬 Se genera respuesta en lenguaje natural]
-    M[🔁 Endpoint.py: devuelve respuesta JSON]
-    N[🖥️ Chat.py: muestra respuesta en la interfaz web]
+    A[Usuario ingresa pregunta en index.html]
+    B[JS Conection.py envía POST a /chat]
+    C[Flask Endpoint.py recibe la consulta]
+    D[Prompts/CreatePrompt.py construye el prompt]
+    E[Vectorstore/VectorConnection.py conecta con Qdrant]
+    F[Chunking/Ids.py genera ID para búsqueda]
+    G[Chunking/Chunk.py localiza chunks relevantes]
+    H[Embeddings/Embendder.py crea embedding de la pregunta]
+    I[Qdrant devuelve documentos similares]
+    J[Prompt enriquecido con contexto]
+    K[Generator/LLM.py consulta a Gemini vía LangChain]
+    L[Respuesta generada en lenguaje natural]
+    M[Flask devuelve JSON al frontend]
+    N[JS Chat.py muestra respuesta en la interfaz]
 
     A --> B --> C --> D --> E --> F --> G --> H --> I --> J --> K --> L --> M --> N
-
 ```
 ---
 
