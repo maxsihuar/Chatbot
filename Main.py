@@ -29,7 +29,33 @@ def js_files(filename):
     """
     return send_from_directory("Web/Js", filename)
 
+#Cargamos los archivos de la capeerta Css en el index.html
+@main.route("/Css/<path:filename>")
+def css_file(filename):
+    """
+    Ruta para servir archivos CSS desde la carpeta Web/Css.
+
+    Args:
+        filename (str): Nombre del archivo CSS solicitado.
+
+    Returns:
+        File: Archivo CSS correspondiente.
+    """
+    return send_from_directory("Web/Css", filename)
+
+#Cargamos los archivos de la capeerta Html en el index.html
+@main.route("/Html/<path:filename>")
+def html_file(filename):
+    """
+    Ruta para servir archivos Html desde la carpeta Web/Html 
+    Args:
+        filename (str): Nombre del archivo Hmtl solicitado.
+
+    Returns:
+        File: Archivo Html correspondiente.
+    """
+    return send_from_directory("Web/Html", filename)
 
 #Hacemos un "Deploy" del servidor
 if __name__=="__main__":
-    main.run(debug=False)
+    main.run(debug=True)

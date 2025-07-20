@@ -84,8 +84,6 @@ def RagMain(pregunta: str) -> str:
 
     respuesta = CreatePrompt.Prompt(pregunta,mem,Qdrant,clienteGenai)
 
-
-    print(respuesta)
     
     mem.append({    
         "role":"model",
