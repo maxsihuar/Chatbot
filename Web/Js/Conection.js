@@ -23,13 +23,30 @@ document.addEventListener("DOMContentLoaded",()=>{
   Btn.addEventListener('click',()=>{
     User()
     PostData()
+    document.getElementById("prompt").value = "";
   })
+})
+
+
+document.addEventListener("DOMContentLoaded",()=>{
+      PostData()
+      document.getElementById("prompt").value = "";
 })
 
 /**
  * Realiza una petición POST a la API `/api/v1/consulta` enviando el texto del usuario.
  * Espera una respuesta JSON con la clave 'respuesta' y la muestra usando `Bot()`.
  */
+
+document.addEventListener("DOMContentLoaded",()=>{
+  document.addEventListener('keydown', function(event){
+    if(event.key==="Enter"){
+      User()
+      PostData()
+      document.getElementById("prompt").value = "";
+    }
+  })
+})
 
 function PostData(){
   fetch("/api/v1/consulta",{

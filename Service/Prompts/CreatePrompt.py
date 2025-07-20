@@ -48,4 +48,4 @@ def Prompt(pregunta:str, historial:list,client:Qdrant, Genai) -> str | None:
 
     respusta = chat.send_message(prompt)
 
-    return respusta.candidates[0].content.parts[0].text
+    return respusta.candidates[0].content.parts[0].text.replace('\n', '<br>')
