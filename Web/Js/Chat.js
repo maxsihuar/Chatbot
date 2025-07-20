@@ -19,8 +19,8 @@ export function CreateChat(){
 
 export function Bot(mensaje){
     var ModelBot =
-        `<div class='container-fluid d-flex justify-content-start my-2 px-2'>
-            <div class='p-2 bg-light rounded shadow-sm' style='display: inline-block; max-width: 85%; word-wrap: break-word;'>
+        `<div class='bot-msg container-fluid d-flex justify-content-start my-2 px-2'>
+            <div class='bubble bot-bubble p-2 bg-light rounded shadow-sm' style='display: inline-block; max-width: 85%; word-wrap: break-word;'>
                 <i class='fas fa-robot me-2'></i>${mensaje}
             </div>
         </div>`;
@@ -36,8 +36,8 @@ export function Bot(mensaje){
 export function User(){
     var mensaje = CreateChat()
     var ModelUser =
-        `<div class='container-fluid d-flex justify-content-end my-2 px-2'>
-            <div class='p-2 bg-secondary text-white rounded shadow-sm' style='display: inline-block; max-width: 85%; word-wrap: break-word;'>
+        `<div class='user-msg container-fluid d-flex justify-content-end my-2 px-2'>
+            <div class='bubble user-bubble p-2 bg-secondary text-white rounded shadow-sm' style='display: inline-block; max-width: 85%; word-wrap: break-word;'>
                 ${mensaje}
             </div>
         </div>`;

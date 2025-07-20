@@ -56,6 +56,19 @@ def html_file(filename):
     """
     return send_from_directory("Web/Html", filename)
 
+#Cargamos los archivos de la capeerta Html en el index.html
+@main.route("/Img/<path:filename>")
+def Img_file(filename):
+    """
+    Ruta para servir archivos png, jpg, etc desde la carpeta Web/Img 
+    Args:
+        filename (str): Nombre del archivo Img solicitado.
+
+    Returns:
+        File: Archivo Img correspondiente.
+    """
+    return send_from_directory("Web/Img", filename)
+
 #Hacemos un "Deploy" del servidor
 if __name__=="__main__":
     main.run(debug=True)

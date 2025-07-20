@@ -10,12 +10,31 @@ function GetText(){
     return Input
 }
 
+
+/**
+ * Coloca una pregunta frecuente en el input, muestra el mensaje del usuario
+ * y llama directamente a PostData().
+ * 
+ * @param {string} pregunta - Pregunta frecuente a enviar al chatbot.
+ */
+window.sendFAQ = function(pregunta) {
+    const input = document.getElementById('prompt');
+    if (!input) return;
+
+    input.value = pregunta;
+    User();
+    PostData();
+    input.value = "";
+};
+
+
 /**
  * Espera a que el DOM esté completamente cargado para asignar eventos.
  * Agrega un evento al botón con id 'Btn-PostData' que:
  * 1. Ejecuta la función `User()` para mostrar el mensaje del usuario.
  * 2. Llama a `PostData()` para enviar la consulta al backend.
  */
+
 
 
 document.addEventListener("DOMContentLoaded",()=>{

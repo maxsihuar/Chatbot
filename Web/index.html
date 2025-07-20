@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <link rel="stylesheet" href="Css/StyleNav.css">
+    <link rel="stylesheet" href="Css/Darkmode.css">
     <!-- PyScript CSS -->
         <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
     <!-- This script tag bootstraps PyScript -->
@@ -51,16 +52,46 @@
         </nav>
     </header>
 
-    <main class="input-group mb-3 px-5 pt-2">
-        <div id="chat" class="container-fluid overflow-auto shadow-sm p-2 mb-1 bg-body-tertiary rounded" style="height: 70vh; ">
-        </div>
-        <div class="input-group mt-1">
-        <input type="text" id="prompt" class="form-control" placeholder="Ingrese una consulta" aria-label="Text input with segmented dropdown button">
-        <button type="button" id="Btn-PostData" class="btn btn-outline-secondary">Enviar</button>
-        </div>
-    </main>
+<main id="main" class="container-fluid position-relative">
+  <div class="row">
+    <!-- Sidebar -->
+    <aside  id="slidebar" class="col-md-3 col-lg-2 bg-light border-end vh-100 p-3">
+    <h5 class="fw-semibold mb-3 text-center">Preguntas Frecuentes</h5>
+    <div class="d-grid gap-2">
+        <button class="btn btn-outline-secondary" onclick="sendFAQ('¿Qué es ICACIT?')">¿Qué es ICACIT?</button>
+        <button class="btn btn-outline-secondary" onclick="sendFAQ('¿Cómo funciona el sistema de acreditación?')">¿Cómo funciona la acreditación?</button>
+        <button class="btn btn-outline-secondary" onclick="sendFAQ('¿Cuáles son los beneficios de la acreditación?')">Beneficios de la acreditación</button>
+        <button class="btn btn-outline-secondary" onclick="sendFAQ('¿Qué criterios evalúa ICACIT?')">Criterios de evaluación</button>
+        <button class="btn btn-outline-secondary" onclick="sendFAQ('¿Cómo saber si un programa está acreditado?')">¿Mi carrera está acreditada?</button>
+    </div>
+    </aside>
+
+    <!-- Contenido principal -->
+    <section class="col-md-9 col-lg-10 px-4 pt-4 d-flex flex-column" style="height: 100vh;">
+      <!-- Título -->
+      <div class="mb-3 text-center">
+        <h2 class="fw-bold text-primary">Asistente Virtual UNSAAC</h2>
+        <p class="text-muted">Haz una pregunta y nuestro ChatBot te responderá al instante.</p>
+      </div>
+
+      <!-- Chat que ocupa el espacio -->
+      <div id="chat" class="flex-grow-1 overflow-auto shadow-sm p-3 bg-body-tertiary rounded mb-2" style="min-height: 0;">
+        <!-- Mensajes del chat -->
+      </div>
+
+      <!-- Input sticky abajo -->
+      <div class="input-group position-sticky bottom-0 bg-white py-2 pb-5" style="z-index: 1030;">
+        <input type="text" id="prompt" class="form-control" placeholder="Ingrese una consulta" aria-label="Text input">
+        <button type="button" id="Btn-PostData" class="btn btn-outline-primary">Enviar</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
     <script type="module" src="/js/Conection.js"></script>
     <script defer src="Js/Chat.js"></script>
+    <script src="Js/Darkmode.js"></script>
   </body>
 </html>

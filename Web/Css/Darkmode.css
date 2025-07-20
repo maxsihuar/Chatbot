@@ -1,0 +1,86 @@
+body.dark-mode {
+  background-color: #121212 !important;
+  color: #f1f1f1 !important;
+}
+
+.dark-mode main,
+.dark-mode aside,
+.dark-mode .card,
+.dark-mode .navbar,
+.dark-mode .form-control,
+.dark-mode .input-group,
+.dark-mode .input-group-text,
+.dark-mode .btn,
+.dark-mode .btn-outline-secondary,
+.dark-mode .dropdown-menu,
+.dark-mode .modal-content {
+  background-color: #1e1e1e !important;
+  color: #f1f1f1 !important;
+  border-color: #333 !important;
+}
+
+.dark-mode .form-control::placeholder {
+  color: #bbb !important;
+}
+
+.dark-mode #chat {
+  background-color: #1b1b1b !important;
+  color: #f1f1f1;
+}
+
+/* Scrollbar estilo oscuro */
+.dark-mode ::-webkit-scrollbar {
+  width: 8px;
+}
+.dark-mode ::-webkit-scrollbar-track {
+  background: #1e1e1e;
+}
+.dark-mode ::-webkit-scrollbar-thumb {
+  background-color: #444;
+  border-radius: 4px;
+}
+
+/* Botón hover */
+.dark-mode .btn-outline-secondary:hover {
+  background-color: #333 !important;
+  border-color: #555 !important;
+}
+
+/* Preguntas frecuentes (botones en aside) */
+.dark-mode aside button {
+  background-color: #2a2a2a;
+  border-color: #444;
+  color: #f1f1f1;
+}
+.dark-mode aside button:hover {
+  background-color: #444;
+}
+
+.bubble {
+  display: inline-block;
+  max-width: 85%;
+  word-wrap: break-word;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Modo claro */
+.user-bubble {
+  background-color: #6c757d;  /* Bootstrap secondary */
+  color: white;
+}
+
+.bot-bubble {
+  background-color: #f8f9fa;  /* Bootstrap light */
+  color: black;
+}
+
+/* Modo oscuro */
+.dark-mode .user-bubble {
+  background-color: #2d2d2d;
+  color: #f1f1f1;
+}
+
+.dark-mode .bot-bubble {
+  background-color: #1e1e1e;
+  color: #ccc;
+}
