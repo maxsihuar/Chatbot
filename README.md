@@ -157,26 +157,15 @@ https://chatbot-api.onrender.com
 
 ---
 
-## 🌍 Conexión del frontend con Render
+# 🌍 Conexión del Frontend con Render
 
-Tu archivo JS (`Conection.py`) debe usar la URL pública:
+> El límite es el de 64 bits... porque soñar en grande merece arquitectura de verdad 😎.
 
-```js
-fetch("https://chatbot-api.onrender.com/chat", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ pregunta: user_input })
-})
-.then(res => res.json())
-.then(data => mostrarRespuesta(data.respuesta));
-```
+Este chatbot ya se encuentra en **deployment**, es decir, está corriendo en la nube como todo proyecto listo para producción.
 
-> No olvides permitir CORS en Flask:
+🔗 **Míralo en acción aquí**:  
+👉 [https://chatbot-lg97.onrender.com/](https://chatbot-lg97.onrender.com/)
 
-```python
-from flask_cors import CORS
-CORS(app)
-```
 
 ---
 
