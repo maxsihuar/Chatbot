@@ -18,6 +18,38 @@ import Service.Config as cf
 from Service.Generator.LLM import LLM
 
 
+import re
+
+def markdown_to_html(text: str) -> str:
+    """
+    Convierte Markdown básico a HTML: listas con '*', negritas con '**', y saltos de línea.
+    """
+    # Negrita **texto**
+    text = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', text)
+
+    # Listas: líneas que empiezan con '* '
+    lines = text.splitlines()
+    html_lines = []
+    inside_ul = False
+
+    for line in lines:
+        if re.match(r'^\* ', line.strip()):
+            if not inside_ul:
+                html_lines.append('<ul>')
+                inside_ul = True
+            item = line.strip()[2:]
+            html_lines.append(f'<li>{item}</li>')
+        else:
+            if inside_ul:
+                html_lines.append('</ul>')
+                inside_ul = False
+            html_lines.append(line)
+
+    if inside_ul:
+        html_lines.append('</ul>')
+
+    return '<br>'.join(html_lines)
+
 def Prompt(pregunta:str, historial:list,client:Qdrant, Genai) -> str | None:
     """
         Genera una respuesta basada en la arquitectura RAG (Retrieval-Augmented Generation).
@@ -48,4 +80,8 @@ def Prompt(pregunta:str, historial:list,client:Qdrant, Genai) -> str | None:
 
     respusta = chat.send_message(prompt)
 
-    return respusta.candidates[0].content.parts[0].text.replace('\n', '<br>')
+    texto = respusta.candidates[0].content.parts[0].text.replace('\n', '<br>')
+
+    respuesta_html = markdown_to_html(texto)
+
+    return respuesta_html

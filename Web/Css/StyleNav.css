@@ -12,3 +12,12 @@
 .navbar-text {
   color: white;                      /* Asegura color blanco en el texto lateral */
 }
+
+#slidebar {
+  height: 100vh;
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+}
+#slidebar::-webkit-scrollbar {
+  display: none; /* Chrome y Edge */
+}
